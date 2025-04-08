@@ -2,7 +2,6 @@
   "name": "backend",
   "version": "1.1.0",
   "description": "Backend project",
-  "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "jest",
@@ -16,16 +15,14 @@
     "release:check": "npm test && npm run build",
     "release:version": "bumpp package.json --execute=\"npm run release:changelog && git add changelog.md\" --commit \"build: publish v%s\" --tag --all"
   },
-  "author": "",
+  "author": "Gregorio Giorgino <gregorio@dr-hawk.dev>",
   "license": "ISC",
   "imports": {
     "#src/*": "./src/*"
   },
   "dependencies": {
-    "commitlint": "^19.8.0",
     "express": "^5.1.0",
-    "prisma": "^6.5.0",
-    "ts-node": "^10.9.2"
+    "prisma": "^6.5.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",
@@ -33,11 +30,13 @@
     "@types/express": "^5.0.1",
     "@types/jest": "^29.5.14",
     "bumpp": "^10.1.0",
+    "commitlint": "^19.8.0",
     "husky": "^9.1.7",
     "jest": "^29.7.0",
     "lint-staged": "^15.5.0",
     "prettier": "^3.5.3",
     "standard-version": "^9.5.0",
+    "ts-node": "^10.9.2",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3"
   }
