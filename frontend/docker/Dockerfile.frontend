@@ -1,5 +1,5 @@
 # Frontend Dockerfile
-FROM node:23.11-alpine as build
+FROM node:23.11-alpine AS build
 
 # Set working directory
 WORKDIR /usr/src/app
