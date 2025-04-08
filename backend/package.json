@@ -1,6 +1,6 @@
 {
   "name": "backend",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Backend project",
   "main": "index.js",
   "type": "module",
@@ -10,7 +10,12 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "prepare": "cd .. && husky backend/.husky",
-    "commitlint": "commitlint"
+    "commitlint": "commitlint",
+    "release": "npm run release:check && npm run release:version && npm run release:publish",
+    "release:changelog": "standard-version --infile changelog.md --same-file --skip.bump --skip.commit --skip.tag",
+    "release:check": "npm test && npm run build",
+    "release:publish": "clean-publish",
+    "release:version": "bumpp package.json --execute=\"npm run release:changelog && git add changelog.md\" --commit \"build: publish v%s\" --tag --all"
   },
   "author": "",
   "license": "ISC",
@@ -28,10 +33,12 @@
     "@commitlint/config-conventional": "^19.8.0",
     "@types/express": "^5.0.1",
     "@types/jest": "^29.5.14",
+    "bumpp": "^10.1.0",
     "husky": "^9.1.7",
     "jest": "^29.7.0",
     "lint-staged": "^15.5.0",
     "prettier": "^3.5.3",
+    "standard-version": "^9.5.0",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3"
   }
