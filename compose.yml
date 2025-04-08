@@ -17,7 +17,7 @@ services:
     environment:
       - NODE_ENV=${NODE_ENV:-production}
       - DATABASE_URL=${DATABASE_URL:-postgresql://postgres:postgres@db:5432/app_db}
-    command: "npm run test"
+    command: "sh /usr/src/app/entrypoint.sh"
     volumes:
       - ./backend:/usr/src/app
     depends_on:
