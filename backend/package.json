@@ -1,6 +1,6 @@
 {
   "name": "backend",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Backend project",
   "main": "index.js",
   "type": "module",
@@ -11,10 +11,9 @@
     "start": "node dist/index.js",
     "prepare": "cd .. && husky backend/.husky",
     "commitlint": "commitlint",
-    "release": "npm run release:check && npm run release:version && npm run release:publish",
+    "release": "npm run release:check && npm run release:version",
     "release:changelog": "standard-version --infile changelog.md --same-file --skip.bump --skip.commit --skip.tag",
     "release:check": "npm test && npm run build",
-    "release:publish": "clean-publish",
     "release:version": "bumpp package.json --execute=\"npm run release:changelog && git add changelog.md\" --commit \"build: publish v%s\" --tag --all"
   },
   "author": "",
