@@ -8,7 +8,9 @@
     "test": "jest",
     "dev": "tsx src/index.ts",
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "prepare": "cd .. && husky backend/.husky",
+    "commitlint": "commitlint"
   },
   "author": "",
   "license": "ISC",
@@ -16,15 +18,20 @@
     "#src/*": "./src/*"
   },
   "dependencies": {
+    "commitlint": "^19.8.0",
     "express": "^5.1.0",
     "prisma": "^6.5.0",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
     "@types/express": "^5.0.1",
     "@types/jest": "^29.5.14",
     "husky": "^9.1.7",
     "jest": "^29.7.0",
+    "lint-staged": "^15.5.0",
+    "prettier": "^3.5.3",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3"
   }
