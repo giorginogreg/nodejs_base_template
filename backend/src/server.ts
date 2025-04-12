@@ -2,7 +2,7 @@ import express from 'express';
 import type { Request, Response } from 'express';
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Middleware per il parsing del JSON
 app.use(express.json());
@@ -28,4 +28,4 @@ app.listen(port, () => {
   console.log(`🚀 Server avviato con successo sulla porta ${port}`);
   console.log(`📝 Endpoint principale: http://localhost:${port}`);
   console.log(`🔍 Endpoint di test: http://localhost:${port}/api/test`);
-}); 
+});

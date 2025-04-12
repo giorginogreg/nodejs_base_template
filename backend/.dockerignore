@@ -11,6 +11,9 @@ yarn-error.log
 .env.test
 .env.production
 
+.aws*
+.npmrc
+
 # Version control
 .git
 .gitignore
@@ -36,3 +39,5 @@ docker-compose*
 *.log
 README.md
 LICENSE 
+
+.husky
