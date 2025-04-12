@@ -1,15 +1,17 @@
 import type { User } from '@prisma/client';
+import type { PrismaUserRepository } from '../data-access/user-repository-prisma.js';
 
 export class UserService {
+  constructor(private userRepository: PrismaUserRepository) {}
+
   private users: User[] = [];
 
   async getAllUsers(): Promise<User[]> {
-    return this.users;
+    return this.userRepository.getAllUsers();
   }
 
   async getUserById(id: number): Promise<User | null> {
-    const user = this.users.find(u => u.id === id);
-    return user || null;
+    return this.userRepository.getUserById(id);
   }
 
   async createUser(userData: Omit<User, 'id'>): Promise<User> {
@@ -17,8 +19,7 @@ export class UserService {
       id: Math.floor(Math.random() * 1000), // Random number between 0-999
       ...userData,
     };
-    this.users.push(newUser);
-    return newUser;
+    return this.userRepository.createUser(newUser);
   }
 
   async updateUser(id: number, userData: User): Promise<User | null> {
