@@ -1,17 +1,20 @@
 # Backend Dockerfile
 FROM node:23.11-alpine
 
+# Set working directory
 WORKDIR /usr/src/cache
+
 # Copy package files
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Set working directory
-
 # Copy source code
-RUN mkdir /usr/src/app && apk update && apk add rsync
+RUN mkdir /usr/src/app && \
+    apk add --no-cache rsync=3.2.10-r1 && \
+    rm -rf /var/cache/apk/*
+
 WORKDIR /usr/src/app
 
 COPY . .

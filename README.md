@@ -5,3 +5,4 @@ This is a Node JS template project, from which to start to create your own app
 
 - Copy .env.example file in .env, change vars as needed
 - run `docker compose up`
+- For linting dockerfiles, run `./dockerfile-linter.sh backend/docker/Dockerfile.backend`
