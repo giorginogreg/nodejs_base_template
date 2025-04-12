@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "jest",
-    "dev": "tsx src/server.ts",
+    "dev": "tsc -w & node --watch dist/server.js",
     "build": "tsc",
     "start": "node dist/index.js",
     "prepare": "cd .. && husky backend/.husky",
