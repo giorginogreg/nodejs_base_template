@@ -12,21 +12,38 @@ datasource db {
 
 model User {
   id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  email     String   @unique
   name      String?
+  email     String   @unique
+  password  String
   role      Role     @default(USER)
   pages     Page[]
+  createdAt DateTime @default(now())
 }
 
 model Page {
   id        Int      @id @default(autoincrement())
+  title     String   @db.VarChar(255)
+  content   String
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  Int?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   published Boolean  @default(false)
-  title     String   @db.VarChar(255)
-  author    User?    @relation(fields: [authorId], references: [id])
-  authorId  Int?
+}
+
+model Permission {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model UserPermission {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  permissionId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 enum Role {
