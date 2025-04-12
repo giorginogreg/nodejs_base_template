@@ -1,23 +1,24 @@
 import type { Request, Response } from 'express';
 import { Router } from 'express';
-const app = require('#src/server');
+import { UserService } from '#src/apps/users/domain/user-service.js';
+import { PrismaUserRepository } from '#src/apps/users/data-access/user-repository-prisma.js';
 
-const API_NAMESPACE = '/api/v1';
-const RESOURCE_NAME = 'users';
+const userService = new UserService(new PrismaUserRepository());
 
 export default function userController(): Router {
   const router = Router();
 
   // User REST endpoints
-  router.get(`${API_NAMESPACE}/${RESOURCE_NAME}`, (req: Request, res: Response) => {
+  router.get(`/`, async (req: Request, res: Response) => {
     try {
-      res.status(200).json({ message: 'Get all users' });
+      const users = await userService.getAllUsers();
+      res.status(200).json({ message: 'Users fetched successfully', data: users });
     } catch (error) {
       res.status(500).json({ error: 'Internal server error' });
     }
   });
 
-  app.get(`${API_NAMESPACE}/${RESOURCE_NAME}/:id`, (req: Request, res: Response) => {
+  router.get(`/:id`, (req: Request, res: Response) => {
     try {
       const { id } = req.params;
       res.status(200).json({ message: `Get user with id ${id}` });
@@ -26,7 +27,7 @@ export default function userController(): Router {
     }
   });
 
-  app.post(`${API_NAMESPACE}/${RESOURCE_NAME}`, (req: Request, res: Response) => {
+  router.post(`/`, (req: Request, res: Response) => {
     try {
       const userData = req.body;
       res.status(201).json({ message: 'User created', data: userData });
@@ -35,7 +36,7 @@ export default function userController(): Router {
     }
   });
 
-  app.put(`${API_NAMESPACE}/${RESOURCE_NAME}/:id`, (req: Request, res: Response) => {
+  router.put(`/:id`, (req: Request, res: Response) => {
     try {
       const { id } = req.params;
       const userData = req.body;
@@ -45,7 +46,7 @@ export default function userController(): Router {
     }
   });
 
-  app.delete(`${API_NAMESPACE}/${RESOURCE_NAME}/:id`, (req: Request, res: Response) => {
+  router.delete(`/:id`, (req: Request, res: Response) => {
     try {
       const { id } = req.params;
       res.status(200).json({ message: `User ${id} deleted` });
