@@ -20,4 +20,15 @@ export class PrismaUserRepository implements IUserRepository {
   createUser(userData: User): Promise<User> {
     return this.prisma.user.create({ data: userData });
   }
+
+  deleteUser(id: number): Promise<boolean> {
+    return this.prisma.user
+      .delete({ where: { id } })
+      .then(() => true)
+      .catch(() => false);
+  }
+
+  updateUser(id: number, userData: User): Promise<User | null> {
+    return this.prisma.user.update({ where: { id }, data: userData }).catch(() => null);
+  }
 }

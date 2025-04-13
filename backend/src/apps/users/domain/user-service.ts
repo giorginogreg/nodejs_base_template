@@ -23,20 +23,10 @@ export class UserService {
   }
 
   async updateUser(id: number, userData: User): Promise<User | null> {
-    const userIndex = this.users.findIndex(u => u.id === id);
-    if (userIndex === -1) return null;
-
-    const updatedUser = {
-      ...this.users[userIndex],
-      ...userData,
-    };
-    this.users[userIndex] = updatedUser;
-    return updatedUser;
+    return this.userRepository.updateUser(id, userData);
   }
 
   async deleteUser(id: number): Promise<boolean> {
-    const initialLength = this.users.length;
-    this.users = this.users.filter(u => u.id !== id);
-    return this.users.length !== initialLength;
+    return this.userRepository.deleteUser(id);
   }
 }
