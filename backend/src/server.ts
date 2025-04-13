@@ -1,13 +1,17 @@
-import express from 'express';
-import type { Request, Response } from 'express';
-import UserController from './apps/users/entry-points/api/v1/user-controller.ts';
+import express, { NextFunction, Request, Response } from 'express';
+//import type { Request, Response } from 'express';
+import usersRouter from './apps/users/entry-points/api/v1/users-router';
 
 const app = express();
 const port = process.env.PORT || 3000;
+app.use(express.json());
 
-// Middleware per il parsing del JSON
-app.use('/api/v1', [express.json()]);
-app.use('/api/v1/users', UserController());
+app.use('/api/v1/users', usersRouter);
+
+// Below route is trigerred when any error is is thrown
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  res.status(500).json({ message: err.message });
+});
 
 // Avvio del server
 app.listen(port, () => {

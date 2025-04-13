@@ -12,14 +12,14 @@ RUN npm install
 
 # Copy source code
 RUN mkdir /usr/src/app && \
-    apk add --no-cache rsync=3.2.10-r1 && \
+    apk add --no-cache rsync=3.4.0-r0 && \
     rm -rf /var/cache/apk/*
 
 WORKDIR /usr/src/app
 
 COPY . .
 
-# Build the application (if using TypeScript or other build steps)
+# Build the application
 # RUN npm run build
 
 # Expose the port the app runs on
