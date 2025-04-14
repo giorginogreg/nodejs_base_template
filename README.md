@@ -10,6 +10,8 @@ It's been structured as a monorepo, you can install packages in the frontend or 
 - run `docker compose up`
 - For linting dockerfiles, run `./dockerfile-linter.sh backend/docker/Dockerfile.backend`
 
+- For releasing a new version, always run the command `npm run release` **outside** the container
+
 ### Prisma
 
 Generate migrations with generators: `npx prisma migrate dev`
