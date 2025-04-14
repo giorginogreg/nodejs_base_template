@@ -4,6 +4,7 @@ import { RequestHandler } from 'express';
 //import UserService from '../../../domain/user-service';
 import type { Request, Response } from 'express';
 import { ResponseCodes } from 'http-constants-ts';
+import Joi from 'joi';
 const userService = new UserService(new PrismaUserRepository());
 
 export const getAllUsers: RequestHandler = async (req: Request, res: Response) => {
