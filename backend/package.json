@@ -21,6 +21,7 @@
 	"dependencies": {
 		"@prisma/client": "^6.6.0",
 		"express": "^5.1.0",
+		"http-constants-ts": "^1.0.8",
 		"joi": "^17.13.3"
 	},
 	"devDependencies": {
