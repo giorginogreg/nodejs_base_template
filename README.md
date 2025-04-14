@@ -1,5 +1,8 @@
 # nodejs_base_template
+
 This is a Node JS template project, from which to start to create your own app
+It's been structured as a monorepo, you can install packages in the frontend or in the backend with the command:
+`npm i -w [backend|frontend] <package>`
 
 ## Basic setup instructions
 
