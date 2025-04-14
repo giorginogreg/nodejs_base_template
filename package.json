@@ -1,0 +1,15 @@
+{
+	"name": "nodejs_base_template",
+	"version": "1.0.0",
+	"description": "Monorepo for BE and FE",
+	"devDependencies": {},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"workspaces": [
+		"backend",
+		"frontend"
+	],
+	"author": "",
+	"license": "ISC"
+}
