@@ -1,6 +1,7 @@
 import type { User } from '@prisma/client';
 import type { PrismaUserRepository } from '../data-access/user-repository-prisma';
 import { userSchema, userUpdateSchema } from './user-schema-validator';
+import { Optional } from '@prisma/client/runtime/library';
 
 export class UserService {
 	constructor(private userRepository: PrismaUserRepository) {}
@@ -27,7 +28,7 @@ export class UserService {
 		return this.userRepository.createUser(newUser);
 	}
 
-	async updateUser(id: number, userData: User): Promise<User | null> {
+	async updateUser(id: number, userData: Optional<User>): Promise<User | null> {
 		const { error } = userUpdateSchema.validate(userData);
 
 		if (error) {

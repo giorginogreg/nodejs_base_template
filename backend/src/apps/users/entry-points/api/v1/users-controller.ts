@@ -1,10 +1,9 @@
+import { User } from '@prisma/client';
 import { PrismaUserRepository } from '../../../data-access/user-repository-prisma';
 import { UserService } from '../../../domain/user-service';
 import { RequestHandler } from 'express';
-//import UserService from '../../../domain/user-service';
 import type { Request, Response } from 'express';
 import { ResponseCodes } from 'http-constants-ts';
-import Joi from 'joi';
 const userService = new UserService(new PrismaUserRepository());
 
 export const getAllUsers: RequestHandler = async (req: Request, res: Response) => {
@@ -12,7 +11,10 @@ export const getAllUsers: RequestHandler = async (req: Request, res: Response) =
 	res.status(ResponseCodes.OK).json({ message: 'Users fetched successfully', data: users });
 };
 
-export const getUserById: RequestHandler = async (req: Request, res: Response) => {
+export const getUserById: RequestHandler<{ id: string }> = async (
+	req: Request<{ id: string }>,
+	res: Response
+) => {
 	const { id } = req.params;
 	const user = await userService.getUserById(parseInt(id));
 	if (!user) {
@@ -22,13 +24,16 @@ export const getUserById: RequestHandler = async (req: Request, res: Response) =
 	res.status(ResponseCodes.OK).json({ message: `User fetched successfully`, data: user });
 };
 
-export const createUser: RequestHandler = async (req: Request, res: Response) => {
+export const createUser: RequestHandler = async (req: Request<{}, {}, User>, res: Response) => {
 	const userData = req.body;
 	const newUser = await userService.createUser(userData);
 	res.status(ResponseCodes.CREATED).json({ message: 'User created', data: newUser });
 };
 
-export const updateUser: RequestHandler = async (req: Request, res: Response) => {
+export const updateUser: RequestHandler<{ id: string }> = async (
+	req: Request<{ id: string }>,
+	res: Response
+) => {
 	const { id } = req.params;
 	const userData = req.body;
 	const updatedUser = await userService.updateUser(parseInt(id), userData);
