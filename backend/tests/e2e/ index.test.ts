@@ -1,9 +1,14 @@
 import request from 'supertest';
 import { createApp } from '../../src/createApp';
-
-const app = createApp();
+import { Express } from 'express';
 
 describe('GET /api/v1/users', () => {
+	let app: Express;
+
+	beforeAll(() => {
+		app = createApp();
+	});
+
 	it('should return a list of users', async () => {
 		const response = await request(app).get('/api/v1/users');
 		expect(response.status).toBe(200);
