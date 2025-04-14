@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/giorginogreg/nodejs_base_template/compare/v2.0.2...v2.1.0) (2025-04-14)
+
+
+### Bug Fixes
+
+* fixed typo ([ef59bb7](https://github.com/giorginogreg/nodejs_base_template/commit/ef59bb740705c7452c4420c81dfc8028afaa1dc1))
+
 ### [2.0.2](https://github.com/giorginogreg/nodejs_base_template/compare/v1.1.0...v2.0.2) (2025-04-14)
 
 
