@@ -1,7 +1,6 @@
 import type { User } from '@prisma/client';
-import type { PrismaUserRepository } from '../data-access/user-repository-prisma.js';
-import Joi from 'joi';
-import { userSchema, userUpdateSchema } from './user-schema-validator.js';
+import type { PrismaUserRepository } from '../data-access/user-repository-prisma';
+import { userSchema, userUpdateSchema } from './user-schema-validator';
 
 export class UserService {
 	constructor(private userRepository: PrismaUserRepository) {}
