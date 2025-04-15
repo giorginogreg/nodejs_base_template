@@ -19,3 +19,9 @@ Generate migrations with generators: `npx prisma migrate dev`
 Create generator: `npx prisma generate`. It updates libraries for typehint and other checks (run when migrate is run)
 
 Push changes to dev DB: `npx prisma db push`
+
+### Docs
+
+How to start docusaurus: `npm -w docs run docusaurus start`
+How to build docs: `npm -w docs run docusaurus build`
+How to deploy docs: `npm -w docs run docusaurus deploy`

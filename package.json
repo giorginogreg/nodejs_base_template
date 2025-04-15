@@ -8,7 +8,8 @@
 	},
 	"workspaces": [
 		"backend",
-		"frontend"
+		"frontend",
+		"docs"
 	],
 	"author": "",
 	"license": "ISC"
