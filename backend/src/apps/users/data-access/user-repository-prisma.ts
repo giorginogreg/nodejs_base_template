@@ -1,35 +1,35 @@
-import { PrismaClient } from '@prisma/client';
-import type { User } from '@prisma/client';
-import type { IUserRepository } from './user-repository.js';
-import { Optional } from '@prisma/client/runtime/library.js';
+import { PrismaClient } from '@prisma/client'
+import type { User } from '@prisma/client'
+import type { IUserRepository } from './user-repository.js'
+import { Optional } from '@prisma/client/runtime/library.js'
 
 export class PrismaUserRepository implements IUserRepository {
-	private prisma: PrismaClient;
+	private prisma: PrismaClient
 
 	constructor() {
-		this.prisma = new PrismaClient(); //TODO: Move to singleton pattern
+		this.prisma = new PrismaClient() //TODO: Move to singleton pattern
 	}
 
-	getAllUsers(): Promise<User[]> {
-		return this.prisma.user.findMany();
+	getAllUsers() {
+		return this.prisma.user.findMany()
 	}
 
-	getUserById(id: number): Promise<User | null> {
-		return this.prisma.user.findUnique({ where: { id } });
+	getUserById(id: number) {
+		return this.prisma.user.findUnique({ where: { id } })
 	}
 
-	createUser(userData: User): Promise<User> {
-		return this.prisma.user.create({ data: userData });
+	createUser(userData: User) {
+		return this.prisma.user.create({ data: userData })
 	}
 
-	deleteUser(id: number): Promise<boolean> {
+	deleteUser(id: number) {
 		return this.prisma.user
 			.delete({ where: { id } })
 			.then(() => true)
-			.catch(() => false);
+			.catch(() => false)
 	}
 
-	updateUser(id: number, userData: Optional<User>): Promise<User | null> {
-		return this.prisma.user.update({ where: { id }, data: userData }).catch(() => null);
+	updateUser(id: number, userData: Optional<User>) {
+		return this.prisma.user.update({ where: { id }, data: userData }).catch(() => null)
 	}
 }

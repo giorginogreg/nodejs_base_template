@@ -1,44 +1,44 @@
-import type { User } from '@prisma/client';
-import type { PrismaUserRepository } from '../data-access/user-repository-prisma';
-import { userSchema, userUpdateSchema } from './user-schema-validator';
-import { Optional } from '@prisma/client/runtime/library';
+import type { User } from '@prisma/client'
+import type { PrismaUserRepository } from '../data-access/user-repository-prisma'
+import { userSchema, userUpdateSchema } from './user-schema-validator'
+import { Optional } from '@prisma/client/runtime/library'
 
 export class UserService {
 	constructor(private userRepository: PrismaUserRepository) {}
 
-	async getAllUsers(): Promise<User[]> {
-		return this.userRepository.getAllUsers();
+	async getAllUsers() {
+		return this.userRepository.getAllUsers()
 	}
 
-	async getUserById(id: number): Promise<User | null> {
-		return this.userRepository.getUserById(id);
+	async getUserById(id: number) {
+		return this.userRepository.getUserById(id)
 	}
 
-	async createUser(userData: Omit<User, 'id'>): Promise<User> {
-		const { error } = userSchema.validate(userData);
+	async createUser(userData: Omit<User, 'id'>) {
+		const { error } = userSchema.validate(userData)
 
 		if (error) {
-			throw new Error(error.message);
+			throw new Error(error.message)
 		}
 
 		const newUser: User = {
 			id: Math.floor(Math.random() * 1000), // Random number between 0-999
 			...userData,
-		};
-		return this.userRepository.createUser(newUser);
+		}
+		return this.userRepository.createUser(newUser)
 	}
 
-	async updateUser(id: number, userData: Optional<User>): Promise<User | null> {
-		const { error } = userUpdateSchema.validate(userData);
+	async updateUser(id: number, userData: Optional<User>) {
+		const { error } = userUpdateSchema.validate(userData)
 
 		if (error) {
-			throw new Error(error.message);
+			throw new Error(error.message)
 		}
 
-		return this.userRepository.updateUser(id, userData);
+		return this.userRepository.updateUser(id, userData)
 	}
 
-	async deleteUser(id: number): Promise<boolean> {
-		return this.userRepository.deleteUser(id);
+	async deleteUser(id: number) {
+		return this.userRepository.deleteUser(id)
 	}
 }
