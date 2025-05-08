@@ -7,7 +7,7 @@
 		"test:e2e": "jest --testPathPattern=tests/e2e",
 		"dev": "concurrently \"tsc --watch\" \"nodemon ./src/server.ts\"",
 		"start": "node ./dist/server.js",
-		"build": "tsc --build",
+		"build": "tsc -p ./tsconfig.prod.json ",
 		"prepare": "cd .. && husky backend/.husky",
 		"commitlint": "commitlint",
 		"release": "npm run release:check && npm run release:version",

@@ -13,7 +13,7 @@ export function createApp() {
 	app.use(`${API_PREFIX}/users`, usersRouter)
 
 	// Below route is trigerred when any error is is thrown
-	app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+	app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
 		console.error(err)
 		res.status(ResponseCodes.INTERNAL_SERVER_ERROR).json({ message: err.message })
 	})
