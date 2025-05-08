@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.base.json",
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "compilerOptions": {
+    "skipLibCheck": true,                 	/* Skip type checking all .d.ts files. */
+    "incremental": true,                  	/* Save .tsbuildinfo files to allow for incremental compilation of projects. */
+    "disableReferencedProjectLoad": true	/* Reduce the number of projects loaded automatically by TypeScript. */
+  }
+
+}

@@ -1,7 +1,4 @@
-import type { Request, Response } from 'express';
 import { Router } from 'express';
-import { UserService } from '../../../domain/user-service';
-import { PrismaUserRepository } from '../../../data-access/user-repository-prisma';
 import { getAllUsers, getUserById, createUser, updateUser, deleteUser } from './users-controller';
 
 //const userService = new UserService(new PrismaUserRepository());

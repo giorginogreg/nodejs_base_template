@@ -2,6 +2,7 @@ import { createApp } from './createApp';
 
 const app = createApp();
 const port = process.env.PORT || 3000;
+const API_PREFIX = process.env.API_PREFIX || '/api/v1'
 
 // Avvio del server
 app.listen(port, () => {

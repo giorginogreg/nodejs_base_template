@@ -6,7 +6,7 @@ import type { Request, Response } from 'express';
 import { ResponseCodes } from 'http-constants-ts';
 const userService = new UserService(new PrismaUserRepository());
 
-export const getAllUsers: RequestHandler = async (req: Request, res: Response) => {
+export const getAllUsers: RequestHandler = async (_req: Request, res: Response) => {
 	const users = await userService.getAllUsers();
 	res.status(ResponseCodes.OK).json({ message: 'Users fetched successfully', data: users });
 };
