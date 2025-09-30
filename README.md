@@ -22,6 +22,7 @@ Push changes to dev DB: `npx prisma db push`
 
 ### Docs
 
+Install docusaurus: `npx create-docusaurus@latest docs classic --typescript`
 How to start docusaurus: `npm -w docs run docusaurus start`
 How to build docs: `npm -w docs run docusaurus build`
 How to deploy docs: `npm -w docs run docusaurus deploy`
