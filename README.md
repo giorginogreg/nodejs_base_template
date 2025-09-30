@@ -14,6 +14,7 @@ It's been structured as a monorepo, you can install packages in the frontend or 
 
 ### Prisma
 
+Startup new project: `npx prisma && npx prisma init`
 Generate migrations with generators: `npx prisma migrate dev`
 
 Create generator: `npx prisma generate`. It updates libraries for typehint and other checks (run when migrate is run)
